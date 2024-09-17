@@ -12,7 +12,7 @@ const Slider = () => {
   );                                                     
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index < byDateDesc.length -1 ? index + 1 : 0),
+      () => setIndex(index < byDateDesc.length -1 ? index + 1 : 0), // Lindex dépassait la length du tableau,ce qui résultait par une slide vide(blanche)
       5000
     );
   };
