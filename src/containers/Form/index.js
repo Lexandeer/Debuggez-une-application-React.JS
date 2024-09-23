@@ -38,7 +38,8 @@ const Form = ({ onSuccess, onError }) => {
             titleEmpty
           />
           <Field placeholder="" label="Email" />
-          {/* j'ai rejouter un onClick sur le bouton pour appeller la fonction onSuccess */}
+          {/* j'ai rejouter un onClick sur le bouton pour appeller la fonction onSuccess 
+          et afficher le message d'envoie du formulaire. */}
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending} onClick={onSuccess}> 
             {sending ? "En cours" : "Envoyer"}
           </Button>

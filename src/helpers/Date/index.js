@@ -14,4 +14,5 @@ export const MONTHS = {
 };
 
 export const getMonth = (date) => MONTHS[date.getMonth()];
-// J'ai corrigé l'indexation des mois qui ne respectait pas les conventions JavaScript
+// J'ai corrigé l'indexation des mois qui ne respectait pas les conventions JavaScript.
+  // ça permet d'afficher correctement les mois sur les EventsCard.

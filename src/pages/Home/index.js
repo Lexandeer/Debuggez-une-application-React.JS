@@ -15,7 +15,9 @@ import { useData } from "../../contexts/DataContext";
 
 
 const Page = () => {
+ // J'utilise useData pour extraire l'événement le plus récent (lastEvent) depuis le contexte partagé (DataContext)
   const {lastEvent} = useData()
+  
   return(
   <>
     <header>
@@ -26,6 +28,7 @@ const Page = () => {
         <Slider />
       </section>
       <section className="ServicesContainer">
+       {/* J'ai ajouté l'ID "nos-services" pour permettre la navigation par ancre vers cette section. */}
         <h2 className="Title" id="nos-services">Nos services</h2>
         <p>Nous organisons des événements sur mesure partout dans le monde</p>
         <div className="ListContainer">
@@ -55,10 +58,12 @@ const Page = () => {
         </div>
       </section>
       <section className="EventsContainer">
+        {/* J'ai ajouté l'ID "nos-realisations" pour permettre la navigation par ancre vers cette section. */}
         <h2 className="Title" id="nos-realisations">Nos réalisations</h2>
         <EventList />
       </section>
       <section className="PeoplesContainer">
+        {/* J'ai ajouté l'ID "notre-equipe" pour permettre la navigation par ancre vers cette section. */}
         <h2 className="Title" id="notre-equipe">Notre équipe</h2>
         <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
         <div className="ListContainer">
@@ -119,6 +124,8 @@ const Page = () => {
     <footer className="row">
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
+        {/* J'ai ajouté lastEvent pour accéder aux informations du dernier événement récupéré via le contexte. 
+         Cela me permet d'afficher dynamiquement l'image, le titre et la date du dernier événement dans le composant EventCard. */}
         <EventCard
           imageSrc={lastEvent?.cover}
           title={lastEvent?.title}

@@ -16,7 +16,9 @@ const EventList = () => {
 
   const filteredEvents = (
     (type
-      ? data?.events.filter((evt) => evt.type === type) // J'ai rajouté un filtrage suplémentaire qui compare le type selectionné(si selctionné) et les types des events pour afficher uniquement les bons events.
+      // J'ai ajouté un filtrage supplémentaire pour comparer le type sélectionné avec les types des événements, 
+        // afin d'afficher uniquement ceux qui correspondent.
+      ? data?.events.filter((evt) => evt.type === type) 
       : data?.events) || []
   ).filter((event, index) => {
     if (

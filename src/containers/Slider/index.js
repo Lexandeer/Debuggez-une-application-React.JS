@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
 
+
 import "./style.scss";
 
 const Slider = () => {
@@ -12,8 +13,10 @@ const Slider = () => {
   );                                                     
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index < byDateDesc.length -1 ? index + 1 : 0), // Lindex dépassait la length du tableau,ce qui résultait par une slide vide(blanche)
-      5000
+      // J'ai ajouté -1 à la longueur de byDateDesc pour éviter que l'index ne dépasse la taille du tableau, 
+        // ce qui permet de faire défiler les éléments sans provoquer d'erreur d'index.
+      () => setIndex(index < byDateDesc.length -1 ? index + 1 : 0), 
+      4000
     );
   };
   useEffect(() => {
@@ -24,7 +27,7 @@ const Slider = () => {
       {byDateDesc?.map((event, idx) => (
         <>
           <div
-            key={event.title}
+            key={`${event.date}-${event.title}`}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -42,10 +45,12 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  key={`${event.date}-${event.description}`}
                   type="radio"
                   name="radio-button"
-                  checked={index === radioIdx} // Le mauvais index etait comparé.
+                  // J'ai corrigé la comparaison pour m'assurer que l'index actuel est correctement comparé à radioIdx,
+                    // cela permet de pouvoir suivre correctement l'avancement des slides.
+                  checked={index === radioIdx} 
                 />
               ))}
             </div>
