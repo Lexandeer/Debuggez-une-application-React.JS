@@ -3,7 +3,11 @@ import { DataProvider, api, useData } from "./index";
 
 describe("When a data context is created", () => {
   it("a call is executed on the events.json file", async () => {
-    api.loadData = jest.fn().mockReturnValue({ result: "ok" });
+    api.loadData = jest.fn().mockResolvedValue({ 
+       // Ici, j'ai ajouté un tableau d'événements avec une date et un titre,
+      events: [{ date: "2024-01-01", title: "Event 1" }], 
+      result: "ok" // Propriété result ajoutée pour le test
+    });
     const Component = () => {
       const { data } = useData();
       return <div>{data?.result}</div>;
@@ -38,7 +42,7 @@ describe("When a data context is created", () => {
     window.console.error = jest.fn();
     global.fetch = jest.fn().mockResolvedValue(() =>
       Promise.resolve({
-        json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
+        json: () => Promise.resolve({ events: [{ date: "2024-09-24" }] }), // Simule la structure des données
       })
     );
     const Component = () => {

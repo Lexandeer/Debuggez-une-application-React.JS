@@ -21,7 +21,7 @@ function useFindLastEvent(data) {
 
     // timeStamps crée un tableau de timestamps à partir des dates des événements. 
       // Cela permet de comparer les dates sous forme numérique(MilliSecondes).
-    const timeStamps = data.events.map(event => Date.parse(event.date));
+    const timeStamps = (data.events || []).map(event => Date.parse(event.date));
 
     // lastTimeStamps trouve le plus grand timestamp, qui correspond à la date la plus récente.
     const lastTimeStamps = Math.max(...timeStamps);
@@ -30,7 +30,7 @@ function useFindLastEvent(data) {
     const lastDate = new Date(lastTimeStamps);
 
     // foundLastEvent recherche dans le tableau data.events l'événement dont la date correspond à lastDate.
-    const foundLastEvent = data.events.find(event => Date.parse(event.date) === lastDate.getTime());
+    const foundLastEvent = (data.events || []).find(event => Date.parse(event.date) === lastDate.getTime());
 
     setLastEvent(foundLastEvent);
     // useEffect prend dans son tableau de dépendance data, 
